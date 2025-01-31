@@ -33,8 +33,10 @@ Nesta aula, aprendemos a criar bases de dados no SQL Server, com destaque para b
 ## Conclusão
 Essas práticas são fundamentais para otimizar a performance e a manutenção do banco de dados, garantindo escalabilidade e eficiência em bases de dados maiores.
 
-```
-![image](https://github.com/user-attachments/assets/81511998-0065-4efd-8a53-c1fb5b4fe376)
-![image](https://github.com/user-attachments/assets/f8d7f7b3-cfee-431c-89f2-a92368d154ba)
+![1image](https://github.com/user-attachments/assets/8742ad56-fbb5-45e1-9a9e-f8cf06be29e7)
+![image 1](https://github.com/user-attachments/assets/5e13ce96-70ee-4c32-89a4-ab5f3010c455)
+
+
+
 
 
