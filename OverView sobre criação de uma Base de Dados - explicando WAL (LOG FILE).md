@@ -130,3 +130,4 @@ COMMIT TRAN;
 - **Backup Regular**: Planeje backups periódicos para proteger dados críticos.
 - **Boas Práticas**: Utilize o WAL e checkpoints para manter a consistência e a performance do banco.
 
+![image](https://github.com/user-attachments/assets/baeaf538-524c-436e-9eb7-0c1ec3ae1839)
