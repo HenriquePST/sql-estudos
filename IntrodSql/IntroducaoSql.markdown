@@ -1,0 +1,34 @@
+✅ Resumo do Módulo 3 – Comandos Básicos de SQL
+📌 Comandos SELECT:
+
+SELECT * FROM tabela
+Seleciona todas as colunas da tabela.
+
+SELECT Coluna1, Coluna2 FROM tabela
+Seleciona colunas específicas da tabela.
+
+SELECT DISTINCT Coluna1
+Retorna valores distintos da coluna.
+
+SELECT TOP(N)
+Retorna as N primeiras linhas da tabela.
+
+SELECT TOP(N) PERCENT
+Retorna os N% primeiros registros.
+
+SELECT Coluna1 AS 'Nome' FROM tabela
+Renomeia a coluna para facilitar a leitura.
+
+💬 Comentários em SQL:
+
+Iniciam com -- ou são feitos entre /* ... */.
+
+Servem para documentar o código e são ignorados na execução.
+
+📐 Boas práticas:
+
+Identação ajuda a tornar o código mais legível e fácil de interpretar.
+
+ℹ️ Observação final:
+
+Todos os SELECTs que fizemos retornam uma tabela, que nada mais são do que consultas ou queries.
