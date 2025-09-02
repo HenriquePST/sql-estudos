@@ -8,7 +8,7 @@ USE
     ContosoRetailDW
 
 
--- comando Select from retorna as linhas da tabela, indepente das colunas selecionas
+-- comando Select from retorna as linhas da tabela, independente das colunas selecionas
 SELECT 
     * 
 FROM
