@@ -21,4 +21,4 @@ SELECT TOP (10)
     UnitCost
 FROM DimProduct
 ORDER BY UnitCost DESC
-/*Anotações: Ordena primeiro pelo custo unitário, depois pelo peso (em caso de empate). Usado para análises de produtos premium ou pesados e caros. /*
+/*Anotações: Ordena primeiro pelo custo unitário, depois pelo peso (em caso de empate). Usado para análises de produtos premium ou pesados e caros./*
