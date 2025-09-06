@@ -8,18 +8,18 @@ NOT,AND,OR
 Então:
 WHERE A OR (B AND (NOT C))
 
-AND
+SINTXE:AND
 SELECT coluna1, coluna2
 FROM nome_da_tabela
 WHERE condição1 AND condição2;
 
 
-OR
+SINTXE:OR
 SELECT coluna1, coluna2
 FROM nome_da_tabela
 WHERE condição1 OR condição2;
 
-NOT
+SINTXE:NOT
 SELECT coluna1, coluna2
 FROM nome_da_tabela
 WHERE NOT condição;
@@ -95,8 +95,10 @@ Where NOT DepartmentName = 'Marketing'
 SELECT * FROM DimEmployee
 WHERE NOT MiddleName = 'NULL' 
 
--- Exercicios de Fixação: AND, OR e NOT 
 
+
+
+-- Exercicios de Fixação: AND, OR e NOT 
 -- 1 Selecione todas as linhas da tabela DimEmployee de funcionario do sexo feminino e do departamento de finanças 
 
 
@@ -121,21 +123,18 @@ GO
 SELECT * FROM DimSalesTerritory
 WHERE SalesTerritoryGroup = 'Europe' AND NOT SalesTerritoryCountry = 'Italy'
 
--- Cuidados ao utilizar o AND em conjunto com o OR 
+-- Cuidados ao utilizar o AND em conjunto com o OR ( FAZ NECESSARIO A SEPARACAO POR PRECENDENCIA POR PARENTESES )
 
--- Exemplo: Selecione todas as linhas da tabela dimProduct onde a cor do produto pode ser igual a preto OU vermelho, MAS a marca deve ser obrigatoriamente igual a fabrikam
+-- Exemplo: Selecione todas as linhas da tabela dimProduct onde a cor do produto pode ser igual a preto OU vermelho, MAS a marca deve ser obrigatoriamente igual a fabrikam,
 
 SELECT * FROM DimProduct 
 WHERE (ColorName = 'Black' OR ColorName = 'Red') AND BrandName = 'Fabrikam'
 GO
 
 
-/*O que é o IN no SQL?
-
-O IN é um operador que você usa em consultas SQL para verificar se um valor está dentro de uma lista de valores.
-
+/* COMANDO IN no SQL?
+ verificar se um valor está dentro de uma lista de valores.
 É como dizer:
-
 “Me traga todos os registros onde a coluna tenha um desses valores.”
 
 SELECT coluna1, coluna2
@@ -149,3 +148,30 @@ ORDER BY ProductKey ASC
 
 SELECT * FROM DimEmployee
 WHERE DepartmentName IN ('Production', 'Marketing', 'Engineering')
+
+
+-- Comando Like 
+
+-- CONTENDO TEXTO  '%TEXTO%'
+-- COMEÇA TEXTO  'TEXTO%'
+-- TERMINA TEXTO '%TEXTO'
+
+SELECT * FROM DimProduct
+WHERE ProductName LIKE '%MP3 PLAYER%'
+
+SELECT * FROM DimProduct
+WHERE ProductDescription LIKE '1GB%'
+
+SELECT * FROM DimProduct
+WHERE ProductDescription LIKE '%WMA'
+
+
+-- Comando Betwen 
+-- Intervalo de valor Betwen ( quero um filtro entre 50 e 100 dolares por exemplo )
+
+SELECT * FROM DimProduct
+WHERE UnitPrice BETWEEN 50 AND 100
+
+SELECT * FROM DimEmployee
+WHERE HireDate BETWEEN '2000-01-01' AND '2000-12-31'
+
