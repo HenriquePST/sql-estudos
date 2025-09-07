@@ -132,8 +132,7 @@ WHERE (ColorName = 'Black' OR ColorName = 'Red') AND BrandName = 'Fabrikam'
 GO
 
 
-/* COMANDO IN no SQL?
- verificar se um valor está dentro de uma lista de valores.
+/* Where mais In - Alternativa ao OR com múltiplas condições
 É como dizer:
 “Me traga todos os registros onde a coluna tenha um desses valores.”
 
@@ -150,7 +149,8 @@ SELECT * FROM DimEmployee
 WHERE DepartmentName IN ('Production', 'Marketing', 'Engineering')
 
 
--- Comando Like 
+-- Where mais Like - Filtro especial para textos
+-- Me traga os dados contendo valores x
 
 -- CONTENDO TEXTO  '%TEXTO%'
 -- COMEÇA TEXTO  'TEXTO%'
@@ -166,7 +166,7 @@ SELECT * FROM DimProduct
 WHERE ProductDescription LIKE '%WMA'
 
 
--- Comando Betwen 
+-- Where mais Between - Filtrando entre valores
 -- Intervalo de valor Betwen ( quero um filtro entre 50 e 100 dolares por exemplo )
 
 SELECT * FROM DimProduct
@@ -174,6 +174,9 @@ WHERE UnitPrice BETWEEN 50 AND 100
 
 SELECT * FROM DimEmployee
 WHERE HireDate BETWEEN '2000-01-01' AND '2000-12-31'
+
+
+-- Where mais Is Null e Is Not Null - Filtrando valores nulos
 
 SELECT * FROM DimCustomer
 --WHERE CompanyName IS NOT NULL
