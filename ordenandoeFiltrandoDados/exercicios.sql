@@ -55,4 +55,89 @@ DimStore, retorne as seguintes informações: StoreName, OpenDate, EmployeeCount
 b) Renomeeie as colunas anteriores para deixar a sua consulta mais intuitiva.
 c) Dessas lojas, descubra quantas (e quais) lojas ainda estão ativas. */
 
+SELECT * FROM Dimstore
 
+SELECT
+      StoreName AS 'nome de abertura',
+      OpenDate AS 'Data de abertura',
+      EmployeeCount AS 'Qtde de funcionarios',
+      StoreType as 'tipo de loja'
+FROM
+    DimStore
+WHERE
+    StoreType = 'Store' AND Status = 'On '
+
+
+/* 5 -- O gerente da área de controle de qualidade notificou à Contoso que todos os produtos Home
+Theater da marca Litware, disponibilizados para venda no dia 15 de março de 2009, foram
+identificados com defeitos de fábrica.
+O que você deverá fazer é identificar os ID’s desses produtos e repassar ao gerente para que ele
+possa notificar as lojas e consequentemente solicitar a suspensão das vendas desses produtos. */
+
+SELECT * FROM DimProduct
+
+WHERE BrandName = 'Litware'
+    AND ProductName LIKE '%Home Theater%' 
+    AND AvailableForSaleDate = '20090315'
+
+
+/*
+6. Imagine que você precise extrair um relatório da tabela DimStore, com informações de lojas.
+Mas você precisa apenas das lojas que não estão mais funcionando atualmente.
+a) Utilize a coluna de Status para filtrar a tabela e trazer apenas as lojas que não estão mais
+funcionando.
+b) Agora imagine que essa coluna de Status não existe na sua tabela. Qual seria a outra forma
+que você teria de descobrir quais são as lojas que não estão mais funcionando? */
+
+SELECT * FROM DimStore
+--WHERE Status = 'Off'
+ WHERE CloseDate IS NOT NULL;
+
+/*7.De acordo com a quantidade de funcionários, cada loja receberá uma determinada quantidade
+de máquinas de café. As lojas serão divididas em 3 categorias:
+CATEGORIA 1: De 1 a 20 funcionários -> 1 máquina de café
+CATEGORIA 2: De 21 a 50 funcionários -> 2 máquinas de café
+CATEGORIA 3: Acima de 51 funcionários -> 3 máquinas de café
+
+Identifique, para cada caso, quais são as lojas de cada uma das 3 categorias acima (basta fazer
+uma verificação). */
+
+USE CONTOSORETAILDW
+
+SELECT * FROM DimStore
+
+WHERE EmployeeCount BETWEEN 1 AND 20
+WHERE EmployeeCount BETWEEN 1 AND 20
+WHERE EmployeeCount > 50
+
+
+/*A empresa decidiu que todas as televisões de LCD receberão um super desconto no próximo
+mês. O seu trabalho é fazer uma consulta à tabela DimProduct e retornar os ID’s, Nomes e
+Preços de todos os produtos LCD existentes. */
+
+SELECT ProductKey as 'id',
+ProductName as 'nome do produto',
+UnitPrice AS 'preco do produto'
+ FROM
+DimProduct
+WHERE ProductDescription LIKE '%LCD%' 
+
+/*Faça uma lista com todos os produtos das cores: Green, Orange, Black, Silver e Pink. Estes
+produtos devem ser exclusivamente das marcas: Contoso, Litware e Fabrikam.*/
+
+SELECT * FROM DimProduct
+WHERE ColorName  in ('Green', 'Orange', 'Black', 'Silver', 'Pink') 
+AND BrandName in ('contoso', 'litware','Fabrikam')
+
+
+/*A empresa possui 16 produtos da marca Contoso, da cor Silver e com um UnitPrice entre 10 e
+30. Descubra quais são esses produtos e ordene o resultado em ordem decrescente de acordo
+com o preço (UnitPrice).*/
+
+SELECT 
+ProductKey as 'id',
+ProductName as 'nome do produo',
+UnitPrice as ' Preço do produto '
+FROM DimProduct
+WHERE BrandName = 'contoso' AND ColorName = 'silver'  and UnitPrice BETWEEN 10 and 30
+ORDER BY UnitPrice 
