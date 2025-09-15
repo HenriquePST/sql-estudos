@@ -164,4 +164,105 @@ A tabela final deve considerar apenas a marca ‘Contoso’ e ter os seus valore
 ordem decrescente.*/
 
 
-    
+SELECT * 
+    FROM
+dimproduct
+
+SELECT
+    StockTypeName,
+    SUM(Weight) AS [Peso Total]
+FROM
+    DimProduct
+WHERE
+    BrandName = 'Contoso'
+GROUP BY
+    StockTypeName
+ORDER BY
+    SUM(Weight) DESC;
+
+/*6. Você seria capaz de confirmar se todas as marcas dos produtos possuem à disposição todas as
+16 opções de cores? */
+
+SELECT DISTINCT
+        BrandName as 'marca',
+        count (DISTINCT ColorName) as 'qtd cores'
+FROM  
+        DimProduct
+GROUP BY
+    BrandName
+
+SELECT DISTINCT
+       ColorName
+FROM   dimproduct
+WHERE  brandname = 'contoso';
+
+/* Faça um agrupamento para saber o total de clientes de acordo com o Sexo e também a média
+salarial de acordo com o Sexo. Corrija qualquer resultado “inesperado” com os seus
+conhecimentos em SQL.*/
+
+select * from dimcustomer 
+
+SELECT 
+    gender,
+    COUNT(gender) AS 'qtd total de clientes ',
+    AVG(yearlyIncome) AS 'media_renda_anual'
+FROM   
+    dimcustomer
+WHERE gender is not null
+GROUP BY
+    gender 
+
+/* 8 -Faça um agrupamento para descobrir a quantidade total de clientes e a média salarial de
+acordo com o seu nível escolar. Utilize a coluna Education da tabela DimCustomer para fazer
+esse agrupamento. */
+
+SELECT 
+    education as 'nivel escolar',
+    COUNT (gender) as 'qtd total',
+    AVG (yearlyIncome) as 'media salarial'
+FROM
+    dimcustomer
+WHERE education is not NULL
+GROUP BY
+    education
+
+/*DIMEMPLOYEE
+9. Faça uma tabela resumo mostrando a quantidade total de funcionários de acordo com o
+Departamento (DepartmentName). Importante: Você deverá considerar apenas os
+funcionários ativos. */
+
+SELECT TOP (10) *
+FROM DIMEMPLOYEE;
+
+SELECT 
+    DepartmentName as 'departamento',
+    COUNT(employeekey) AS 'qtda total dpto'
+FROM
+    DIMEMPLOYEE
+WHERE STATUS  = 'Current'
+GROUP BY
+    departmentName
+   
+/*
+10. Faça uma tabela resumo mostrando o total de VacationHours para cada cargo (Title). Você
+deve considerar apenas as mulheres, dos departamentos de Production, Marketing,
+Engineering e Finance, para os funcionários contratados entre os anos de 1999 e 2000.*/
+
+
+
+SELECT 
+    Title as 'cargo',
+    SUM(VacationHours) AS TotalVacationHours
+FROM 
+    DIMEMPLOYEE
+WHERE 
+    Gender = 'F'
+    AND DepartmentName IN ('Production', 'Marketing', 'Engineering', 'Finance')
+    AND hiredate BETWEEN '1999-01-01' AND '2000-12-31'
+GROUP BY 
+    Title
+ORDER BY 
+   title
+
+
+
