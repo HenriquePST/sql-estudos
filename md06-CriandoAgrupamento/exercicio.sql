@@ -3,7 +3,7 @@ FROM tabela
 WHERE condição ... (quero cor tal , quero nome tal )
 GROUP BY coluna1, coluna2, ... ( tabela dinamica preço por marca )
 HAVING condição_sobre_agrupamento
-ORDER BY coluna;*/ 
+ORDER BY coluna;	*/ 
 
 SELECT  TOP (100) * FROM 
 FACTSALES
