@@ -1,4 +1,4 @@
---- EXEMPLO INNER JOIN, LEFT JOIN E RIGHT JOIN 
+ --- EXEMPLO INNER JOIN, LEFT JOIN E RIGHT JOIN 
 
 SELECT ProductKey, ProductName, ProductSubcategoryKey FROM DimProduct 
 SELECT ProductSubcategoryKey, ProductSubcategoryName FROM DimProductSubcategory
@@ -31,9 +31,57 @@ LEFT JOIN DimProductsubCategory
 SELECT 
     ProductKey,
     ProductName,
-    DimProduct.ProductSubcategoryKey,
+    DimProduct.ProdructSubcategoryKey,
     ProductSubcategoryName
 FROM    
     DimProduct
 RIGHT JOIN DimProductsubCategory
     ON DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductSubCategoryKey
+
+-- Multiplos Joins
+USE ContosoRetailDW
+
+SELECT productkey, productName, ProductSubcategorykey FROM DimProduct
+SELECT productsubcategorykey, productsubcategoryName, Productcategorykey FROM DimProductsubcategory
+SELECT ProductCategoryKey, ProductCategoryName FROM DimProductCategory
+
+SELECT 
+    productkey,
+    productname,
+    DimProduct.productsubcategorykey,
+    productCategoryName,
+    DimProductSubcategory.ProductSubcategoryName
+FROM
+    DimProduct
+INNER JOIN DimProductSubcategory
+    ON DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductCategoryKey
+        INNER JOIN DimProductCategory 
+            ON DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey
+
+-- UNION 
+
+SELECT 
+*
+FROM
+DimCustomer
+WHERE GENDER = 'F'
+UNION
+SELECT
+*FROM
+DimCustomer
+WHERE Gender = 'M'
+
+-- UNION ALL 
+SELECT
+FIRSTNAME,
+BIRTHDATE
+FROM
+DimCustomer
+WHERE Gender = 'F'
+UNION ALL
+SELECT
+FIRSTNAME, 
+BIRTHDATE
+FROM
+DimCustomer
+WHERE Gender = 'M'
