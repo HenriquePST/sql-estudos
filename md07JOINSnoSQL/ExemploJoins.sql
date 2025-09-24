@@ -58,27 +58,27 @@ INNER JOIN DimProductSubcategory
         INNER JOIN DimProductCategory 
             ON DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey
 
--- UNION 
+-- UNION (remove o duplicados )
 
 SELECT 
 *
 FROM
 DimCustomer
 WHERE GENDER = 'F'
-UNION
+UNION -- <
 SELECT
 *FROM
 DimCustomer
 WHERE Gender = 'M'
 
--- UNION ALL 
+-- UNION ALL (mantem todos os dados)
 SELECT
 FIRSTNAME,
 BIRTHDATE
 FROM
 DimCustomer
 WHERE Gender = 'F'
-UNION ALL
+UNION ALL -- <
 SELECT
 FIRSTNAME, 
 BIRTHDATE
