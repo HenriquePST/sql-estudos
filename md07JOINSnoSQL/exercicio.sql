@@ -217,7 +217,7 @@ INNER JOIN DimProduct
     ON FactSales.ProductKey = DimProduct.ProductKey
 ORDER BY SalesAmount ASC
 
-
+-- 
 
 
 
