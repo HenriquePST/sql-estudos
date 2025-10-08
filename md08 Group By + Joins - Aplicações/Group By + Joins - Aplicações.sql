@@ -87,9 +87,88 @@ SELECT * from dimdate
     ORDER BY calendarMONTH ASC
 
 
-/* 2. Você precisa fazer uma análise de vendas por produtos. O objetivo final é descobrir o valor
-total vendido (SalesAmount) por produto.
-a) Descubra qual é a cor de produto que mais é vendida (de acordo com SalesQuantity).
-b) Quantas cores tiveram uma quantidade vendida acima de 3.000.000. */ 
+-- 2. Você precisa fazer uma análise de vendas por produtos. O objetivo final é descobrir o valor total vendido (SalesAmount) por cor do produto.
 
-SELECT * from DimProduct
+
+
+--a) Descubra qual é a cor de produto que mais é vendida (de acordo com SalesQuantity).
+
+SELECT
+colorname,
+SUM(SalesQuantity)
+FROM
+factsales
+INNER JOIN dimproduct
+ON factsales.productkey = dimproduct.productkey
+GROUP BY colorname
+
+--b) Quantas cores tiveram uma quantidade vendida acima de 3.000.000. */ 
+
+SELECT
+    colorname,
+    SUM(SalesQuantity) AS TotalSales
+FROM
+    factsales
+INNER JOIN dimproduct
+    ON factsales.productkey = dimproduct.productkey
+GROUP BY
+    colorname
+HAVING
+    SUM(SalesQuantity) >= 3000000
+ORDER BY
+    TotalSales DESC;
+
+
+--Crie um agrupamento de quantidade vendida (SalesQuantity) por categoria do produto (ProductCategoryName). Obs: Você precisará fazer mais de 1 INNER JOIN, dado que a relação entre FactSales e DimProductCategory não é direta.
+
+SELECT TOP 10 * FROM factsales
+SELECT top 10 * FROM dimproduct
+SELECT top 10 * FROM dimproductsubcategory 
+SELECT top 10 * FROM DimProductCategory 
+
+SELECT TOP 10
+    productcategoryname,
+    SUM(SalesQuantity) AS TotalSales
+FROM
+    factsales
+        INNER JOIN dimproduct 
+                ON factsales.productkey = dimproduct.productkey
+                    INNER JOIN dimproductsubcategory 
+                        ON dimproduct.productsubcategorykey = dimproductsubcategory.productsubcategorykey
+                             INNER JOIN DimProductCategory 
+                                ON dimproductsubcategory.productcategorykey = DimProductCategory.productcategorykey
+GROUP BY
+    productcategoryname
+ORDER BY
+    TotalSales DESC;
+
+
+-- 4. 4. a) Você deve fazer uma consulta à tabela FactOnlineSales e descobrir qual é o nome completo do cliente que mais realizou compras online (de acordo com a coluna SalesQuantity).b) Feito isso, faça um agrupamento de produtos e descubra quais foram os top 10 produtos mais comprados pelo cliente da letra a, considerando o nome do produto.
+
+SELECT 
+    lastname,
+    SUM(SalesQuantity) AS TotalSales
+FROM 
+    dimcustomer
+    INNER JOIN FactOnlineSales ON dimcustomer.customerkey = FactOnlineSales.customerkey
+    WHERE customertype = 'person'
+GROUP BY 
+    lastname
+ORDER BY 
+    TotalSales DESC;
+
+
+
+
+
+-- nome do cliente que mais realizou compras online ( salesquantity ) 
+-- lastname
+
+SELECT A.COLUMN_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS A 
+WHERE A.TABLE_NAME = 'FactOnlineSales' 
+INTERSECT 
+SELECT B.COLUMN_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS B 
+WHERE B.TABLE_NAME = 'dimcustomer'; 
+
